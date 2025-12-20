@@ -1,0 +1,23 @@
+{
+  "name": "dockerworkspace",
+  "version": "1.0.0",
+  "description": "Attempt to build a reproducible, low-friction development workspace using a containerized workspace",
+  "homepage": "https://github.com/acgreenslade/dockerWorkspace#readme",
+  "bugs": {
+    "url": "https://github.com/acgreenslade/dockerWorkspace/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acgreenslade/dockerWorkspace.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
