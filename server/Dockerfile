@@ -1,0 +1,7 @@
+FROM node:25-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm clean-install --only=production
+COPY . .
+ENV NODE_ENV=production
+CMD ["node", "index.js"]
