@@ -1,14 +1,21 @@
-FROM node:22-alpine
+# React
+FROM node:25-alpine AS build-stage
+WORKDIR /app/client
+COPY client/package*.json ./
+RUN npm clean-install
+COPY client/ ./
+RUN npm run build
 
-WORKDIR /app
+# Express
+FROM node:25-alpine
+WORKDIR /app/server
+COPY server/package*.json ./
+RUN npm clean-install --only=production
+COPY server/ ./
 
-# Docker layer caching
-COPY package*.json ./
+COPY --from=build-stage /app/client/build /app/client/build
 
-RUN npm install --only=production
-
-COPY . .
-
+# Run app
+ENV NODE_ENV=production
 EXPOSE 3000
-
 CMD ["node", "index.js"]

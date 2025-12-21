@@ -1,9 +1,12 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
+app.use(express.static('/app/client/build'));
+
+app.get('*splat', (req, res) => {
+  res.sendFile(path.join('/app/client/build', 'index.html'));
 });
 
 const server = app.listen(port, () => {
@@ -19,5 +22,5 @@ process.on('SIGINT', () => {
 });
 
 server.on('connection', (socket) => {
-  socket.setTimeout(5 * 1000); // Set a short timeout for idle connections
+  socket.setTimeout(5 * 1000);
 });
