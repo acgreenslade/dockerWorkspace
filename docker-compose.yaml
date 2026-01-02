@@ -12,6 +12,7 @@ services:
     environment:
       - API_PORT=3000
       - DB_URI=mongodb://db:27017/database
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
     depends_on:
       - db
   db:
