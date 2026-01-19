@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 
 const WEATHER_API_URI = "http://localhost:3000/api/weather";
 
-export default function Weather() {
-  const [lat, setLat] = useState("");
-  const [lon, setLon] = useState("");
+const Weather = forwardRef((props, ref) => {
+  const { lat, lon } = props;
+
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
 
-  const submit = async () => {
+  const getWeather = async () => {
     setError(null);
 
     try {
@@ -30,21 +30,13 @@ export default function Weather() {
     }
   };
 
+  useImperativeHandle(ref, () => ({
+    getWeather
+  }));
+
   return (
     <section style={{ marginTop: "2rem" }}>
       <h2>Weather</h2>
-
-      <input
-        placeholder="Latitude"
-        value={lat}
-        onChange={e => setLat(e.target.value)}
-      />
-      <input
-        placeholder="Longitude"
-        value={lon}
-        onChange={e => setLon(e.target.value)}
-      />
-      <button onClick={submit}>Get Weather</button>
 
       {weather && (
         <div>
@@ -58,4 +50,6 @@ export default function Weather() {
       {error && <p style={{ color: "red" }}>{error}</p>}
     </section>
   );
-}
+});
+
+export default Weather;

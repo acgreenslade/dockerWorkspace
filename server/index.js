@@ -2,7 +2,6 @@ const cors = require('cors');
 const express = require('express');
 const path = require('path');
 
-const itemsRouter = require('./router/items.js');
 const weatherRouter = require('./router/weather.js');
 
 const apiPort = process.env.API_PORT;
@@ -16,7 +15,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join('/app/client/build', 'index.html'));
 });
 
-app.use("/api", itemsRouter);
 app.use("/api", weatherRouter);
 
 const server = app.listen(apiPort, () => {
