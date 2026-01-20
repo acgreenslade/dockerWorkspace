@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import Weather from "./Weather";
+import Map from "./Map";
 
 const API_URI = "http://localhost:3000/api/items";
 
@@ -30,6 +31,7 @@ export default function App() {
       />
       <button onClick={handleClick}>Get Recommendation</button>
       <Weather lat={lat} lon={lon} ref={weatherRef}/>
+      <Map lat={lat} lon={lon}/>
     </div>
   );
 }
